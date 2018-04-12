@@ -1,7 +1,12 @@
 
 <!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Spining Wheel prize</title>
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=yes" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="main.css" type="text/css" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,8 +17,6 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="Winwheel.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
         <style type="text/css">
             header{
                 position: fixed;
@@ -63,13 +66,14 @@
               <div id="scrolltop" class="container-fluid testClass">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#"><img src="app/assets/images/rsz_logo2x.png" height="75" width="200" style="margin-top: -21px;"></a>
+                  <a class="navbar-brand" href="#">
+                    <img src="app/assets/images/rsz_logo2x.png" height="75" width="200" style="margin-top: -21px;"></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -113,12 +117,24 @@
               </div><!-- /.container-fluid -->
             </nav>
         </header>
-        <section>
-            <div class="container-fluid ownValue">
-                <div align="center">
+<section>
+        <div class="container-fluid ownValue">
+            <div align="center">
                 <div class="row">
                     <div class="col-md-12">
                         <h2> Welcome To ReferYogi</h2>
+                    </div>
+                    <div class="col-md-12 hidden-md hidden-lg hidden-sm">
+                        <div class="col-md-12" style="height:40px;">
+                            <img src="down_arrow.png" height="100" width="100">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div width="438" height="582" class="the_wheel" align="center" valign="center">
+                            <canvas id="canvas" width="434" height="434">
+                                <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                            </canvas>
+                        </div>
                     </div>
                     <div class="col-md-6" style="margin-top: 100px;">
                         <form onsubmit="return startfun()">
@@ -139,42 +155,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-6">
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <!-- <td>
-                                    <div class="power_controls">
-                                        <br />
-                                        <br />
-                                        <table class="power" cellpadding="10" cellspacing="0"> -->
-                                            <!-- <tr>
-                                                <th align="center">Power</th>
-                                            </tr>
-                                            <tr>
-                                                <td width="78" align="center" id="pw3" onClick="powerSelected(3);">High</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="center" id="pw2" onClick="powerSelected(2);">Med</td>
-                                            </tr>
-                                            <tr>
-                                                <td align="center" id="pw1" onClick="powerSelected(1);">Low</td>
-                                            </tr>
-                                        </table>
-                                        <br />
-                                        <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" /> -->
-                                        <!-- <br /><br />
-                                        &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset) -->
-                                    <!-- </div>
-                                </td> -->
-                                <td width="438" height="582" class="the_wheel" align="center" valign="center">
-                                    <canvas id="canvas" width="434" height="434">
-                                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
-                                    </canvas>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                </div><!-- row div-->
                 <div id="overlay">
                     <div class="pop-outer">
                         <div class="pop-inner">
@@ -183,12 +164,12 @@
                             <h2 id="inside-popup"></h2>
                         </div>
                     </div>
-                </div>
-                    
-                </div>
-            </div>
-        </section>
-        
+                </div> 
+            </div><!-- align center div-->
+        </div><!-- container div-->
+    </section>    
+        <script type="text/javascript" src="Winwheel.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
         <script>
             // Create new wheel object specifying the parameters at creation time.
             debugger
@@ -231,7 +212,7 @@
             // we can play a small tick sound here like you would expect on real prizewheels.
             // -----------------------------------------------------------------
             var audio = new Audio('tick.mp3');  // Create audio object and load tick.mp3 file.
-            debugger
+            // debugger
             function playSound()
             {
                 // Stop and rewind the sound if it already happens to be playing.
@@ -247,7 +228,8 @@
             // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
             // -------------------------------------------------------
             function alertPrize(indicatedSegment)
-            {debugger
+            {
+                // debugger
                 // Do basic alert of the segment text.
                 // You would probably want to do something more interesting with this information.
                 $(document).ready(function(){
@@ -257,7 +239,7 @@
                 })
                 // alert("You have won " + indicatedSegment.text);
             }
-debugger
+// debugger
             // =======================================================================================================================
             // Code below for the power controls etc which is entirely optional. You can spin the wheel simply by
             // calling theWheel.startAnimation();
@@ -276,7 +258,8 @@ debugger
             {
                 // Ensure that spinning can't be clicked again while already running.
                 if (wheelSpinning == false)
-                {debugger
+                {
+                    // debugger
                     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
                     // to rotate with the duration of the animation the quicker the wheel spins.
                     if (wheelPower == 1)
@@ -346,23 +329,21 @@ debugger
                     
                 });
                 // going to give effects to input fields
-                $("input").on('focus',function(){
-                    debugger
-                    $(this).animate({
-                        left: '250px',
-                        opacity: '1',
-                        height: '40px',
-                        width: '400px'
-                    });
-                });
-                $("input").on('blur', function(){
-                    $(this).animate({
-                        left: '1px',
-                        // opacity: '0',
-                        height: '35px',
-                        width: '250px'
-                    });
-                });
+                // $("input").on('focus',function(){
+                //     $(this).animate({
+                //         left: '250px',
+                //         opacity: '1',
+                //         height: '40px',
+                //         width: '400px'
+                //     });
+                // });
+                // $("input").on('blur', function(){
+                //     $(this).animate({
+                //         left: '1px',
+                //         height: '35px',
+                //         width: '250px'
+                //     });
+                // });
             })
             function off(){
                 $(".pop-outer").fadeOut("slow");
@@ -373,7 +354,7 @@ debugger
 
             };
             function startfun(){
-                debugger
+                // debugger
                     wheelPower = 3;
 
                     // Light up the spin button by changing it's source image and adding a clickable class to it.
