@@ -387,21 +387,27 @@
                             processData: false,
                             success: function( data, textStatus, jQxhr ){
                                 debugger
-                                $('#response pre').html( JSON.stringify( data ) );
+                                if(textStatus === "success"){
+                                    wheelPower = 3;
+                                    startSpin();
+                                    $("#submit-button").attr("disabled","true");
+                                       return false;
+                                }else{
+                                    alert("Bill no is already used")
+                                }
                             },
                             error: function( jqXhr, textStatus, errorThrown ){
                                 debugger
                                 console.log( errorThrown );
                             }
                         });
-                    wheelPower = 3;
-
+                    // wheelPower = 3;
+                    // startSpin();
+                    // $("#submit-button").attr("disabled","true");
+                    //    return false;
                     // Light up the spin button by changing it's source image and adding a clickable class to it.
                     // document.getElementById('spin_button').src = "spin_on.png";
                     // document.getElementById('spin_button').className = "clickable";
-                    startSpin();
-                    $("#submit-button").attr("disabled","true");
-                       return false;
                     
             }
         </script>
