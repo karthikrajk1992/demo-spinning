@@ -56,12 +56,15 @@ canvas{
         background-image: url();
         /*background-position: center;*/
         /*background-repeat: none;*/
-        width: 350px;
-        height: 350px;
+              width: 218px;
+                margin: -88px;
+            height:  300px;
+    }
+    .for-mobile{
+        margin-top: 68px;
     }
     canvas{
-        width: 350px;
-            /*margin-left: -8px;*/
+        width: 386px;            /*margin-left: -8px;*/
     }
     
 }

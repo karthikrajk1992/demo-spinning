@@ -21,7 +21,7 @@
 
 
         <style type="text/css">
-            header{
+            /*header{
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -29,7 +29,7 @@
                 bottom: 0;
                 z-index: 1;
                 height: 51px;
-            }
+            }*/
             header .container-fluid{
                 box-shadow: 0px 7px 10px grey;
             }
@@ -65,7 +65,7 @@
     </head>
     <body ng-controller="myCtrl">
         <header>
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
               <div id="scrolltop" class="container-fluid testClass">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -129,10 +129,10 @@
                     </div>
                     <div class="col-md-12 hidden-md hidden-lg hidden-sm">
                         <div class="col-md-12" style="height:40px;">
-                            <img src="down_arrow.png" height="100" width="100">
+                            <img src="down_arrow.png" height="48" width="38" style="position: absolute;left: 148px;">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 for-mobile">
                         <div width="438" height="582" class="the_wheel" align="center" valign="center">
                             <canvas id="canvas" width="434" height="434">
                                 <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
@@ -378,29 +378,31 @@
             function startfun(){
                 debugger
                 $.ajax({
-                            url: 'https://stagingapi.spini.co/spinning_wheels',
-                            dataType: 'json',
-                            type: 'post',
-                            contentType: 'application/json',
-                            // data: JSON.stringify( { "first-name": $('#first-name').val(), "last-name": $('#last-name').val() } ),
-                            data: JSON.stringify( {"spinning_wheel": {
-             "email":$("#usr2").val(),"mobile":$("#usr3").val(),"bill":$("#usr1").val()}}),
-                            processData: false,
-                            success: function( data, textStatus, jQxhr ){
-                                debugger
-                                if(textStatus === "success"){
-                                    wheelPower = 3;
-                                    startSpin();
-                                    $("#submit-button").attr("disabled","true");
-                                     
-                                }
-                            },
-                            error: function( jqXhr, textStatus, errorThrown ){
-                                debugger
-                                alert("Bill " + jqXhr.responseJSON.bill[0]+ " .");
-                               window.location.reload();
+                        url: 'https://stagingapi.spini.co/spinning_wheels',
+                        dataType: 'json',
+                        type: 'post',
+                        contentType: 'application/json',
+                        // data: JSON.stringify( { "first-name": $('#first-name').val(), "last-name": $('#last-name').val() } ),
+                        data: JSON.stringify( {"spinning_wheel": {
+         "email":$("#usr2").val(),"mobile":$("#usr3").val(),"bill":$("#usr1").val()}}),
+                        processData: false,
+                        success: function( data, textStatus, jQxhr ){
+                            debugger
+                            if(textStatus === "success"){
+                                wheelPower = 3;
+                                startSpin();
+                                $("#submit-button").attr("disabled","true");
+                                  var scroll = $("html, body");
+                                  scroll.stop().animate({scrollTop:0}, 500, 'swing', function() {
+                                  });
                             }
-                        });
+                        },
+                        error: function( jqXhr, textStatus, errorThrown ){
+                            debugger
+                            alert("Bill " + jqXhr.responseJSON.bill[0]+ " .");
+                           window.location.reload();
+                        }
+                    });
                   return false;
                     // wheelPower = 3;
                     // startSpin();
