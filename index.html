@@ -372,6 +372,7 @@
                 document.getElementById('usr1').value = "";
                 document.getElementById('usr2').value = "";
                 document.getElementById('usr3').value = "";
+                 windows.localtion.reload();
 
             };
             function startfun(){
@@ -397,6 +398,7 @@
                             error: function( jqXhr, textStatus, errorThrown ){
                                 debugger
                                 alert("Bill " + jqXhr.responseJSON.bill[0]+ " .");
+                                windows.localtion.reload();
                             }
                         });
                   return false;
