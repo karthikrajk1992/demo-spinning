@@ -5,8 +5,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Spining Wheel prize</title>
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=yes" /> -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=yes" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <link rel="stylesheet" href="main.css" type="text/css" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -40,7 +40,7 @@
             section {
                     background: wheat;
                     margin-top: 70px;
-                    height: auto;
+                    height: 700px;
             }
             
         </style>
@@ -157,7 +157,7 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
         <script>
             // Create new wheel object specifying the parameters at creation time.
-            debugger
+            // debugger
             var theWheel = new Winwheel({
                 'numSegments'       : 8,         // Specify number of segments.
                 'outerRadius'       : 150,       // Set outer radius so wheel fits inside the background.
@@ -355,10 +355,9 @@
                 document.getElementById('usr2').value = "";
                 document.getElementById('usr3').value = "";
                 window.location.reload();
-
             };
             function startfun(){
-                debugger
+                // debugger
                 $.ajax({
                         url: 'https://stagingapi.spini.co/spinning_wheels',
                         dataType: 'json',
@@ -366,10 +365,10 @@
                         contentType: 'application/json',
                         // data: JSON.stringify( { "first-name": $('#first-name').val(), "last-name": $('#last-name').val() } ),
                         data: JSON.stringify( {"spinning_wheel": {
-         "email":$("#usr2").val(),"mobile":$("#usr3").val(),"bill":$("#usr1").val()}}),
+                         "email":$("#usr2").val(),"mobile":$("#usr3").val(),"bill":$("#usr1").val().toUpperCase()}}),
                         processData: false,
                         success: function( data, textStatus, jQxhr ){
-                            debugger
+                            // debugger
                             if(textStatus === "success"){
                                 wheelPower = 3;
                                 startSpin();
@@ -380,7 +379,7 @@
                             }
                         },
                         error: function( jqXhr, textStatus, errorThrown ){
-                            debugger
+                            // debugger
                             alert("Bill " + jqXhr.responseJSON.bill[0]+ " .");
                            window.location.reload();
                         }
