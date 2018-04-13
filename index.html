@@ -392,13 +392,11 @@
                                     startSpin();
                                     $("#submit-button").attr("disabled","true");
                                      
-                                }else{
-                                    alert("Bill no is already used")
                                 }
                             },
                             error: function( jqXhr, textStatus, errorThrown ){
                                 debugger
-                                console.log( errorThrown );
+                                alert("Bill no is already used");
                             }
                         });
                   return false;
