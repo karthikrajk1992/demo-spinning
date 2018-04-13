@@ -391,7 +391,7 @@
                                     wheelPower = 3;
                                     startSpin();
                                     $("#submit-button").attr("disabled","true");
-                                       return false;
+                                     
                                 }else{
                                     alert("Bill no is already used")
                                 }
@@ -401,6 +401,7 @@
                                 console.log( errorThrown );
                             }
                         });
+                  return false;
                     // wheelPower = 3;
                     // startSpin();
                     // $("#submit-button").attr("disabled","true");
