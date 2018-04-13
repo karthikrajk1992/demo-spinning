@@ -13,9 +13,12 @@
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+        <!-- <script src="app/assets/js/app.js"></script> -->
+
 
         <style type="text/css">
             header{
@@ -60,7 +63,7 @@
             }
         </style>
     </head>
-    <body>
+    <body ng-controller="myCtrl">
         <header>
             <nav class="navbar navbar-inverse">
               <div id="scrolltop" class="container-fluid testClass">
@@ -174,38 +177,45 @@
             // Create new wheel object specifying the parameters at creation time.
             debugger
             var theWheel = new Winwheel({
-                'numSegments'  : 8,     // Specify number of segments.
-                'outerRadius'  : 212,   // Set outer radius so wheel fits inside the background.
-                'textFontSize' : 28,    // Set font size as desired.
-                'segments'     :        // Define segments including colour and text.
+                'numSegments'       : 8,         // Specify number of segments.
+                'outerRadius'       : 150,       // Set outer radius so wheel fits inside the background.
+                'drawMode'          : 'image',   // drawMode must be set to image.
+                'drawText'          : true,      // Need to set this true if want code-drawn text on image wheels.
+                'textFontSize'      : 12,        // Set text options as desired.
+                'textOrientation'   : 'curved',
+                'textDirection'     : 'reversed',
+                'textAlignment'     : 'outer',
+                'textMargin'        : 5,
+                'textFontFamily'    : 'monospace',
+                'textStrokeStyle'   : 'black',
+                'textLineWidth'     : 2,
+                'textFillStyle'     : 'white',
+                'segments'     :                // Define segments.
                 [
-                   {'fillStyle' : '#C91F37', 'text' : 'Prize 1'},
-                   {'fillStyle' : '#FCC9B9', 'text' : 'Prize 2'},
-                   {'fillStyle' : '#006442', 'text' : 'Prize 3'},
-                   {'fillStyle' : '#763568', 'text' : 'Prize 4'},
-                   {'fillStyle' : '#F9690E', 'text' : 'Prize 5'},
-                   {'fillStyle' : '#4D8FAC', 'text' : 'Prize 6'},
-                   {'fillStyle' : '#7A942E', 'text' : 'Prize 7'},
-                   {'fillStyle' : '#FFA400', 'text' : 'Prize 8'}
+                   {'text' : 'prize 1'},
+                   {'text' : 'prize 2'},
+                   {'text' : 'prize 3'},
+                   {'text' : 'prize 4'},
+                   {'text' : 'prize 5'},
+                   {'text' : 'prize 6'},
+                   {'text' : 'prize 7'},
+                   {'text' : 'price 8'}
                 ],
-                'animation' :           // Specify the animation to use.
+                'animation' :                   // Specify the animation to use.
                 {
                     'type'     : 'spinToStop',
-                    'duration' : 15,
-                    'spins'    : 8,
+                    'duration' : 5,     // Duration in seconds.
+                    'spins'    : 8,     // Number of complete spins.
                     'callbackFinished' : alertPrize,
-                    'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
+                    'callbackSound'    : playSound,
                     'soundTrigger'     : 'pin'
-                    // 'stopAngle' : 359    // Specify pins are to trigger the sound, the other option is 'segment',10-45 => 1,46-90=>2,90-135=>3,136-180=>4,181-225=>5,226-270=>6,271-315=>7,316-359=>8.
-                    // one circle = 360 degree
-                    // no of segments = some number
-                    //winning calculation = 360/no of segment = 1st price
                 },
                 'pins' :
                 {
-                    'number' : 16   // Number of pins. They space evenly around the wheel.
+                    'number' : 8   // Number of pins. They space evenly around the wheel.
                 }
             });
+
 
             // -----------------------------------------------------------------
             // This function is called when the segment under the prize pointer changes
@@ -222,7 +232,18 @@
                 // Play the sound.
                 audio.play();
             }
+            // Create new image object in memory.
+            var loadedImg = new Image();
 
+            // Create callback to execute once the image has finished loading.
+            loadedImg.onload = function()
+            {
+                theWheel.wheelImage = loadedImg;    // Make wheelImage equal the loaded image object.
+                theWheel.draw();                    // Also call draw function to render the wheel.
+            }
+
+            // Set the image source, once complete this will trigger the onLoad callback (above).
+            loadedImg.src = "02.png";
             // -------------------------------------------------------
             // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters
             // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
@@ -354,7 +375,25 @@
 
             };
             function startfun(){
-                // debugger
+                debugger
+                $.ajax({
+                            url: 'https://stagingapi.spini.co/spinning_wheels',
+                            dataType: 'json',
+                            type: 'post',
+                            contentType: 'application/json',
+                            // data: JSON.stringify( { "first-name": $('#first-name').val(), "last-name": $('#last-name').val() } ),
+                            data: JSON.stringify( {"spinning_wheel": {
+             "email":$("#usr2").val(),"mobile":$("#usr3").val(),"bill":$("#usr1").val()}}),
+                            processData: false,
+                            success: function( data, textStatus, jQxhr ){
+                                debugger
+                                $('#response pre').html( JSON.stringify( data ) );
+                            },
+                            error: function( jqXhr, textStatus, errorThrown ){
+                                debugger
+                                console.log( errorThrown );
+                            }
+                        });
                     wheelPower = 3;
 
                     // Light up the spin button by changing it's source image and adding a clickable class to it.

@@ -27,7 +27,9 @@ body
 
 /* Do some css reset on selected elements */
 canvas{
-    margin-top: 57px;
+       width: 614px;
+    margin-left: -90px;
+    margin-top: -32px;
 }
 
 
