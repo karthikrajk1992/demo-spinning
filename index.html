@@ -163,7 +163,7 @@
                 'outerRadius'       : 150,       // Set outer radius so wheel fits inside the background.
                 'drawMode'          : 'image',   // drawMode must be set to image.
                 'drawText'          : true,      // Need to set this true if want code-drawn text on image wheels.
-                'textFontSize'      : 12,        // Set text options as desired.
+                'textFontSize'      : 10,        // Set text options as desired.
                 'textOrientation'   : 'curved',
                 'textDirection'     : 'reversed',
                 'textAlignment'     : 'outer',
@@ -174,14 +174,14 @@
                 'textFillStyle'     : 'white',
                 'segments'     :                // Define segments.
                 [
-                   {'text' : 'prize 1'},
-                   {'text' : 'prize 2'},
-                   {'text' : 'prize 3'},
-                   {'text' : 'prize 4'},
-                   {'text' : 'prize 5'},
-                   {'text' : 'prize 6'},
-                   {'text' : 'prize 7'},
-                   {'text' : 'price 8'}
+                   {'text' : 'Free Samosa'},
+                   {'text' : 'Free Wrapper'},
+                   {'text' : 'Free Cake'},
+                   {'text' : 'Free Coffee'},
+                   {'text' : 'Free Biscuit'},
+                   {'text' : 'Free Tea'},
+                   {'text' : 'Free Bun'},
+                   {'text' : 'Free Cream Cake'}
                 ],
                 'animation' :                   // Specify the animation to use.
                 {
@@ -238,7 +238,7 @@
                 $(document).ready(function(){
                     var alertValue = `You have won ${indicatedSegment.text}.`;
                     $(".pop-outer").fadeIn("slow");
-                    $("#inside-popup").text(alertValue);
+                    $("#inside-popup").text("Get a " + alertValue + " .");
                 })
                 // alert("You have won " + indicatedSegment.text);
             }
