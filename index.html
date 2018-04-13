@@ -396,7 +396,7 @@
                             },
                             error: function( jqXhr, textStatus, errorThrown ){
                                 debugger
-                                alert("Bill no is already used");
+                                alert("Bill " + jqXhr.responseJSON.bill[0]+ " .");
                             }
                         });
                   return false;
